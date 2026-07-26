@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "login": "npx playwright test tests/functional/login.spec.ts --headed",
+    "sauce_demo": "npx playwright test tests/functional/saucedemo.spec.ts --headed",
     "make_apt": "npx playwright test tests/functional/makeAppointment.spec.ts --headed",
+    "Checkout": "npx playwright test tests/functional/inventoryCheckout.spec.ts --headed",
     "demo": "npx playwright test tests/demo/mytest.spec.ts --headed",
     "demo1": "npx playwright test tests/demo/elements_actions.spec.ts --headed"
   },

@@ -7,7 +7,7 @@ test.describe("Make Appointment", () => {
     await expect(page.locator("//h1")).toHaveText("CURA Healthcare Service");
 
     //Click On Make an Appointment
-    //await page.getByRole("link", { name: "Make Appointment" }).click();
+    await page.getByRole("link", { name: "Make Appointment" }).click();
     //await page.getByRole("link", { name: "Make Appointment" }).press("Enter");
     //await page.getByRole("link", { name: "Make Appointment" }).dblclick();
     //await page.getByRole("link", { name: "Make Appointment" }).click({ button: "right" });
@@ -18,7 +18,13 @@ test.describe("Make Appointment", () => {
 
     //Success Login
     await page.getByLabel("Username").click();
+    await page.getByLabel("Username").clear();
     await page.getByLabel("Username").fill("John Doe");
+
+    //Press Sequentially
+    // await page
+    //   .getByLabel("Username")
+    //   .pressSequentially("John Doe", { delay: 300 });
     await page.getByLabel("Password").click();
     await page.getByLabel("Password").fill("ThisIsNotAPassword");
     await page.getByRole("button", { name: "Login" }).click();
@@ -31,17 +37,47 @@ test.describe("Make Appointment", () => {
     page,
   }) => {
     //Drop down box selection
+    // await page
+    //   .getByLabel("Facility")
+    //   .selectOption("Hongkong CURA Healthcare Center");
+
+    //Drop down box selection - Assert deafult
+    // await expect(page.getByLabel("Facility")).toHaveValue(
+    //   "Tokyo CURA Healthcare Center",
+    // );
+
+    // By lable or index
     await page
       .getByLabel("Facility")
-      .selectOption("Hongkong CURA Healthcare Center");
+      .selectOption({ label: "Hongkong CURA Healthcare Center" });
 
+    await page.getByLabel("Facility").selectOption({ index: 2 });
+
+    //Assert count
+    let DDCount = page.getByLabel("Facility").locator("option");
+    await expect(DDCount).toHaveCount(3);
+
+    //Get all DD values
+    let allEle = await page.getByLabel("Facility").all();
+    let listOffEle = [];
+    for (let all of allEle) {
+      let eletext = await all.textContent();
+      if (eletext) {
+        listOffEle.push(eletext);
+      }
+    }
+
+    console.log(`=> list of options: ${listOffEle}`);
     //Check box selection
     await page
       .getByRole("checkbox", { name: "Apply for hospital readmission" })
       .check();
+    await page.getByText("Apply for hospital readmission").uncheck();
 
     //Radio button selection
-    await page.getByRole("radio", { name: "Medicaid" }).check();
+    await expect(page.getByText("Medicare")).toBeChecked();
+    await page.getByText("Medicaid").check();
+    await expect(page.getByText("Medicare")).not.toBeChecked();
 
     //Date Field selection
     await page.locator("#txt_visit_date").click();
