@@ -11,12 +11,17 @@
     "demo": "npx playwright test tests/demo/mytest.spec.ts --headed",
     "demo1": "npx playwright test tests/demo/elements_actions.spec.ts --headed"
   },
-  "keywords": [],
+  "keywords": [
+    "playwright",
+    "playwright-e2e-automation",
+    "playwright-mcp"
+  ],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
     "@playwright/test": "^1.61.1",
-    "@types/node": "^26.1.1"
+    "@types/node": "^26.1.1",
+    "allure-playwright": "^3.10.2"
   }
 }
