@@ -4,7 +4,10 @@
   "description": "Playwright E2E Automation with MCP server",
   "main": "index.js",
   "scripts": {
-    "login": "npx playwright test tests/functional/login.spec.ts --headed",
+    "login": "npx playwright test --grep \"(?=.*@smoke)(?=.*@Regression)\" --headed",
+    "PWScreenshot": "npx playwright test tests/demo/PWScreenshots.spec.ts --headed",
+    "tags": "npx playwright test tests/demo/tags.spec.ts --headed",
+    "login1": "npx playwright test tests/functional/inventoryCheckout.spec.ts --headed",
     "sauce_demo": "npx playwright test tests/functional/saucedemo.spec.ts --headed",
     "make_apt": "npx playwright test tests/functional/makeAppointment.spec.ts --headed",
     "Checkout": "npx playwright test tests/functional/inventoryCheckout.spec.ts --headed",
