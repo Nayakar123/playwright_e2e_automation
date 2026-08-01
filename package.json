@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "login": "npx playwright test --grep \"(?=.*@smoke)(?=.*@Regression)\" --headed",
+    "PW_Adv": "npx playwright test tests/demo/PW_Adv.spec.ts --headed",
     "PWScreenshot": "npx playwright test tests/demo/PWScreenshots.spec.ts --headed",
     "tags": "npx playwright test tests/demo/tags.spec.ts --headed",
     "login1": "npx playwright test tests/functional/inventoryCheckout.spec.ts --headed",
