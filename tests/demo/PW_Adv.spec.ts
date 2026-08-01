@@ -12,7 +12,7 @@ test.describe("Login Functionality", () => {
     await expect(page.getByText("Please login to make")).toBeVisible();
   });
 
-  test.only("Success Login", async ({ page }) => {
+  test("Success Login", async ({ page }) => {
     // Success Login
     // await page.getByLabel("Username").click();
     await page.getByLabel("Username").fill("John Doe");
